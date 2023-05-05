@@ -17,8 +17,11 @@ class Tenant extends Model
 
     public function configure()
     {
+        $sessionFolder = storage_path('framework/sessions/'.$this->domain);
+        if (!file_exists($sessionFolder)) mkdir($sessionFolder);
         config([
             'database.connections.tenant.database' => $this->database,
+            'session.files' => $sessionFolder,
         ]);
 
         DB::purge('tenant');
