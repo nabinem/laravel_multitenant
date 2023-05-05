@@ -19,16 +19,21 @@ class Tenant extends Model
     {
         $sessionFolder = storage_path('framework/sessions/'.$this->domain);
         if (!file_exists($sessionFolder)) mkdir($sessionFolder);
+
+        //only for file cache driver
+        $cacheFolder = storage_path('framework/cache/data/'.$this->domain);
+        if (!file_exists($cacheFolder)) mkdir($cacheFolder);
+        
         config([
             'database.connections.tenant.database' => $this->database,
             'session.files' => $sessionFolder,
+            'cache.stores.file.path' => $cacheFolder,
+            'cache.prefix' => $this->id,
         ]);
 
         DB::purge('tenant');
 
-        DB::reconnect('tenant');
-
-        Schema::connection('tenant')->getConnection()->reconnect();
+        app('cache')->purge(config('cache.default'));
 
         return $this;
     }

@@ -16,6 +16,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        //cache()->put('domain', app('tenant')->domain);
+        dump(cache()->get('domain'));
+
+        dump(\App\Models\User::find($request->user()->id)->email);
+
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
