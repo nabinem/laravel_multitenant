@@ -7,6 +7,20 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Installation
+
+https://www.youtube.com/watch?v=592EgykFOz4
+
+Common: laravel-multitenant.local DB: laravel_multitenant
+
+laravel-multitenant1.local     DB: laravel_multitenant_tenant1 
+
+laravel-multitenant2.local     DB: laravel_multitenant_tenant2
+
+php artisan migrate --database=multitenant --path=database/migrations/multitenant --seed
+
+php artisan tenants:migrate
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
