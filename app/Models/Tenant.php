@@ -16,7 +16,7 @@ class Tenant extends Model
     protected $guarded = [];
 
     public function configure()
-    {
+    { 
         $sessionFolder = storage_path('framework/sessions/'.$this->domain);
         if (!file_exists($sessionFolder)) mkdir($sessionFolder);
 
